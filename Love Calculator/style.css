@@ -1,13 +1,15 @@
-body
-{
+body {
     text-align: center;
+    font-family: 'Montez',cursive;
 }
-.jumbotron
-{
-    padding: 7% 12%;
+#heading {
+    margin-bottom: 5%;
+}
+.jumbotron {
+    padding: 13.8%;
     background-color: #f38181;
+    margin-bottom: 0;
 }
-.love-calc-btn
-{
+.love-calc-btn {
     background-color: #e7e7e7;
 }
