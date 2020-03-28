@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Personal expense</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" />
+    <script defer src="https://use.fontawesome.com/releases/v5.7.2/js/all.js" integrity="sha384-0pzryjIRos8mFBWMzSSZApWtPl/5++eIfzYmTgBBmXYdhvxPc+XcFEk+zJwDgWbP" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <nav class="navbar navbar-dark bg-dark">
+        <span class="navbar-brand mb-0 h1">Your Personal Expense 👉</span>
+        <span class="navbar-brand mb-0 h1" id="headingTotal"></span>
+    </nav>
+    <div class="container-fluid bg-light" style="min-height: 100vh">
+        <div class="container">
+            <div class="jumbotron mt-4">
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control" id="inputAmount" placeholder="Amount spent" aria-label="Amount spent" aria-describedby="spent in rupee" />
+                    <div class="input-group-append">
+                        <span class="input-group-text" id="spent in rupee">₹</span>
+                    </div>
+                </div>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="spent at">@</span>
+                    </div>
+                    <input type="text" class="form-control" id="inputDesc" placeholder="spent On" aria-label="spent On" aria-describedby="spent at" />
+                    <div class="input-group-append">
+                        <button class="btn btn-outline-primary" type="button" id="btnAddExpense">Add</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div>
+            <ul class="list-group" id="expenseTable">
+
+            </ul>
+        </div>
+
+    </div>
+
+
+
+
+    <script>
+        const inputElement = document.querySelector("#inputAmount");
+        const headingEl = document.querySelector("#headingTotal");
+        const element = document.querySelector("#btnAddExpense");
+        const descEl = document.querySelector("#inputDesc");
+        const expenseTableEl = document.querySelector("#expenseTable");
+
+        let totalExpense = 0;
+        headingEl.textContent = totalExpense;
+        const allExpense = [];
+
+        //render function
+        function renderPrintiingListAndExpense() {
+            const TableData = allExpense.map(item => createListItem(item)).join("");
+            expenseTableEl.innerHTML = TableData;
+            const someText = `Total: ${totalExpense}`;
+            headingEl.textContent = someText;
+        }
+
+        function addExpenseToTotal() {
+            const obj = {};
+            const textAmount = inputElement.value;
+            const expense = parseInt(textAmount, 10);
+            const textDesc = descEl.value;
+            obj.amount = expense;
+            obj.desc = textDesc;
+            obj.moment = new Date();
+            allExpense.push(obj);
+            totalExpense = totalExpense + expense;
+
+            // const data1=allExpense[0];
+            // const data2=allExpense[1];
+            // const data1Text=` ${data1.amount} :: ${data1.desc}`;
+            // const data2Text=` ${data2.amount} :: ${data2.desc}`;
+            // const TableData=`
+            // <div>${data1Text}</div>
+            // <div>${data2Text}</div>
+            // `;
+            renderPrintiingListAndExpense();
+        }
+
+
+        // controller functions
+
+        // get date function
+        function getDateString(moment) {
+            return moment.toLocaleDateString('en-US', {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric'
+            });
+        }
+
+        // delete button function
+
+
+
+        function deleteItem(dateValue) {
+            allExpense.forEach(item => {
+                if (item.moment.valueOf() === dateValue) {
+                    let pos = allExpense.indexOf(item);
+                    allExpense.splice(pos, 1);
+                    totalExpense -= item.amount;
+                }
+            })
+            renderPrintiingListAndExpense();
+
+            // const filteredArr=[]; 
+            // for(let i=0;i<allExpense.length;i++){
+            //     if(allExpense[i].moment.valueOf()!==dateValue)
+            //     {
+            //         filteredArr.push(allExpense[i]);
+            //     }
+            // }
+            // const TableData= filteredArr.map(item =>createListItem(item)).join("");
+            // expenseTableEl.innerHTML=TableData;
+
+        }
+
+        function createListItem({
+            desc,
+            amount,
+            moment
+        }) {
+            return `
+                <li class="list-group-item d-flex justify-content-between">
+							<div class="d-flex flex-column">
+                                        ${desc}
+								<small class="text-muted">${getDateString(moment)}
+                                    </small>
+							</div>
+							<div>
+								<span class="px-5">
+                                        ${amount}
+								</span>
+								<button
+                                 onClick="deleteItem(${moment.valueOf()})"
+                                 type="button"
+                                 class="btn btn-outline-danger btn-sm">
+                                 <i class="fas fa-trash-alt"></i>
+								</button>
+							</div>
+						</li>`;
+        }
+
+
+        element.addEventListener("click", addExpenseToTotal, false);
+    </script>
+</body>
+
+</html>

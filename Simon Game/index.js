@@ -8,7 +8,7 @@ var level = 0;
 
 //Start the game by pressing any key on keyboard by calling nextSequence function created above
 var started = false;
-$(document).keypress(function (e) {
+$(document).keypress(function(e) {
     //so that once game starts it won't be started again
     if (started == false) {
         nextSequence();
@@ -18,7 +18,7 @@ $(document).keypress(function (e) {
 });
 
 // function for any of button press
-$(".btn").click(function () {
+$(".btn").click(function() {
     var userChosencolor = $(this).attr("id");
 
     userClickedPattern.push(userChosencolor);
@@ -41,7 +41,7 @@ function checkAnswer(currentLevel) {
         if (userClickedPattern.length === gamePattern.length) {
 
             //5. Call nextSequence() after a 1000 millisecond delay.
-            setTimeout(function () {
+            setTimeout(function() {
                 nextSequence();
             }, 1000);
 
@@ -61,7 +61,7 @@ function checkAnswer(currentLevel) {
 }
 
 function nextSequence() {
-    userClickedPattern=[];
+    userClickedPattern = [];
     //increment level everytime nextSequence is called
     level++;
     $("#level-title").text("Level " + level);
@@ -79,10 +79,10 @@ function nextSequence() {
 
 //start over function if user press the wrong sequence
 function startOver() {
-    level=0;
-    gamePattern=[];
-    started=false;
-} 
+    level = 0;
+    gamePattern = [];
+    started = false;
+}
 
 
 //play sound function for different colors
@@ -94,7 +94,7 @@ function playSound(color) {
 //animation for the buttons
 function animatePress(currentColor) {
     $("#" + currentColor).addClass("pressed");
-    setTimeout(function () {
+    setTimeout(function() {
         $("#" + currentColor).removeClass("pressed");
     }, 100);
 }
