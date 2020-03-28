@@ -1,0 +1,29 @@
+body {
+    text-align: center;
+    height: 100%;
+    margin: 0;
+    background-color: #d4ebd0;
+}
+
+html {
+    height: 100%;
+    margin: 0;
+}
+
+.container-fluid {
+    padding: 5%;
+    min-height: 100%;
+}
+
+.visibility {
+    visibility: hidden;
+}
+
+h1,
+h2 {
+    line-height: 1.5;
+}
+
+.input-group {
+    margin-top: 7%;
+}
