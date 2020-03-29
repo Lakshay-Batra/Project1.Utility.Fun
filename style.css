@@ -1,0 +1,77 @@
+body {
+    text-align: center;
+    margin: 0;
+    font-family: 'Montserrat', sans-serif;
+}
+
+h1 {
+    font-family: 'Montserrat-black', sans-serif;
+}
+
+h2 {
+    line-height: 2;
+}
+
+.top-container {
+    padding: 9%;
+    background-color: #323232;
+    color: white;
+}
+
+.middle-container {
+    padding: 7% 0;
+}
+
+.carousel-item {
+    padding: 3% 18%;
+}
+
+.btn {
+    color: black;
+    margin-top: 3rem;
+}
+
+/* changing color of icon of carousel in mid container */
+
+.black-icon {
+    filter: invert(100%);
+}
+
+.bottom-container {
+    padding: 7% 0;
+    background-color: #323232;
+    color: white;
+}
+
+.instructions {
+    font-size: small;
+}
+
+/* properties */
+
+.margin-top {
+    margin-top: 5%;
+}
+
+.black {
+    color: black;
+}
+
+footer {
+    padding: 4% 15%;
+}
+
+.footer-icon {
+    margin: 0 1rem;
+}
+
+@media (max-width : 672px)
+{
+    h2 {
+        font-size: large;
+    }
+    h3 {
+        font-size: medium;
+        line-height: 1.5;
+    }
+}
