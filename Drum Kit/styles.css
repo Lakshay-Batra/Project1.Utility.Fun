@@ -1,6 +1,10 @@
 body {
   text-align: center;
   background-color: #283149;
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+  flex-wrap: nowrap;
 }
 
 h1 {
@@ -78,4 +82,8 @@ footer {
   text-align: center;
   margin: 10px;
   background-color: white;
+}
+
+.Site-content {
+  flex: 1;
 }

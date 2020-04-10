@@ -68,7 +68,7 @@ footer {
 @media (max-width : 672px)
 {
     h2 {
-        font-size: large;
+        font-size: medium;
     }
     h3 {
         font-size: medium;
